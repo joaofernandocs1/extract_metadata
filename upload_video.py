@@ -1,3 +1,4 @@
+from s3_configs import BUCKET_NAME, FOLDER_NAME
 import boto3
 from botocore.exceptions import ClientError
 from pprint import pprint
@@ -46,15 +47,15 @@ def upload_file(file_name, bucket, folder, object_name=None):
 
     # Upload the file
     try:
-        response = s3_client.upload_file(file_name, bucket, folder + '/' + file_name, Callback=ProgressPercentage(file_name)) # talvez a funcao nao retorne este "response" e nao haja o que printar
+        response = s3_client.upload_file(file_name, bucket, object_name, Callback=ProgressPercentage(file_name)) # talvez a funcao nao retorne este "response" e nao haja o que printar
         print("uploaded tried")
     except ClientError as e:
         logging.error(e)
         return False, None
         
     # tratar o file name, pois o nome do arquivo vem com contrabarras no lugar de barras
-    file_name.replace("\\", "/")
-    object_url = "https://" + bucket + ".s3.amazonaws.com/" + "folder" + "/" + file_name
+    #file_name.replace("\\", "/")
+    object_url = "https://" + BUCKET_NAME + ".s3.sa-east-1.amazonaws.com/" + FOLDER_NAME + "/" + file_name
 
     return True, object_url
 

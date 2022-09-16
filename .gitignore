@@ -109,6 +109,7 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+ex_meta/
 
 # Spyder project settings
 .spyderproject
@@ -127,3 +128,7 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Config files
+sql_configs.py
+s3_configs.py

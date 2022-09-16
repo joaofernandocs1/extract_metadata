@@ -22,12 +22,6 @@ except pymysql.MySQLError as e:
 
 
 def insert_captures(captures_df):
-    # important issues and links to insert many data once. For large amounts of data can cause memory issues.
-    # https://docs.sqlalchemy.org/en/14/dialects/mssql.html#mssql-pyodbc-fastexecutemany
-    # https://github.com/mkleehammer/pyodbc/wiki/Features-beyond-the-DB-API#fast_executemany
-    # https://stackoverflow.com/questions/48006551/speeding-up-pandas-dataframe-to-sql-with-fast-executemany-of-pyodbc
-    # for repeated inserts can be used "cursor.executemany()"
-
     print("dataframe: ", captures_df)
 
     with conn.cursor() as cur:

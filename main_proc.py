@@ -22,21 +22,14 @@ def upload_and_gen_dataframe(folder):
         for video in videos_list:
             status, video_url = upload_file(video, BUCKET_NAME, FOLDER_NAME)
 
-            flag_id = random.randint(1, 2) # table in only filled till 2 flag types
-            camera_id = random.randint(0, 65535) # from the SQL "capture" table column "camera_id" type
-            video_id = str(random.randint(0, 65535)) # from the SQL "capture" table column "video_id" type
+            flag_id = random.randint(1, 2) # table needs to be with all possible values already inserted
+            camera_id = random.randint(0, 65535) 
+            video_id = str(random.randint(0, 65535)) 
 
             location, datetime, duration = get_metadata(video)
 
             if (status):
                 #print("video.index: ", videos_list.index(video))
-                print("values to insert SQL: ", [datetime, flag_id, video_url, camera_id, duration, video_id])
-                print("datetime: ", type(datetime))
-                print("flag_id: ", type(flag_id))
-                print("video_url: ", type(video_url))
-                print("camera_id: ", type(camera_id))
-                print("duration: ", type(duration))
-                print("video_id: ", type(video_id))
                 # inserts a new row in the empty dataframe (video index in videos_list is equal to dataframe row index)
                 dfToInsert.loc[videos_list.index(video)] = [datetime, flag_id, video_url, camera_id, duration, video_id]
 

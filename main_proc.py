@@ -23,7 +23,7 @@ def upload_and_gen_dataframe(folder):
             status, video_url = upload_file(video, BUCKET_NAME, FOLDER_NAME)
 
             flag_id = random.randint(1, 2) # table needs to be with all possible values already inserted
-            camera_id = random.randint(0, 65535) 
+            camera_id = 1 #random.randint(0, 65535) 
             video_id = str(random.randint(0, 65535)) 
 
             location, datetime, duration = get_metadata(video)
